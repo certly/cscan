@@ -23,6 +23,7 @@ namespace CScan
             "Browser.Chrome",
             "Browser.Firefox",
             "HiJackThis.O2",
+            "HiJackThis.O3",
             "HiJackThis.O20",
             "HiJackThis.O21",
             "Hosts",
