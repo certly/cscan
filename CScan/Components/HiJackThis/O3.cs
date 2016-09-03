@@ -21,7 +21,7 @@ namespace CScan.Components.HiJackThis
                     string filePath = Clsid.GetFile(toolbarClsid, result.view);
 
                     list.Add(new Dictionary<string, string>() {
-                        {"Token","03:" },
+                        {"Token","O3" },
                         {"regview",result.view.toEntryString()},
                         {"company", companyName ?? "()"},
                         {"clsid", toolbarClsid},
