@@ -4,13 +4,11 @@
     {
         public bool EnableFiles;
         public bool EnableJson;
-        public string EncryptionKey;
 
-        public Config(bool EnableFiles = false, bool EnableJson = false, string EncryptionKey = null)
+        public Config(bool EnableFiles = false, bool EnableJson = false)
         {
             this.EnableFiles = EnableFiles;
             this.EnableJson = EnableJson;
-            this.EncryptionKey = EncryptionKey;
         }
     }
 }

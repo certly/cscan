@@ -26,19 +26,12 @@ namespace CScan
                             Environment.NewLine + Environment.NewLine +
                             "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
                 "CScan License");
-            encryptionKey.GotFocus += EncryptionKey_GotFocus;
-            encryptionKey.LostFocus += EncryptionKey_LostFocus;
         }
 
         private void Scan_Click(object sender, EventArgs e)
         {
             DisableButtons();
             statusText.Text = "";
-
-            if (!string.IsNullOrEmpty(encryptionKey.Text) && encryptionKey.Text != "Optional Encryption Key")
-            {
-                config.EncryptionKey = encryptionKey.Text;
-            }
 
             config.EnableJson = enableJson.Checked;
 
@@ -109,22 +102,6 @@ namespace CScan
         {
             enableFileEnumerationToolStripMenuItem.Checked = !enableFileEnumerationToolStripMenuItem.Checked;
             config.EnableFiles = enableFileEnumerationToolStripMenuItem.Checked;
-        }
-
-        private void EncryptionKey_LostFocus(object sender, EventArgs e)
-        {
-            if (encryptionKey.Text == "")
-            {
-                encryptionKey.Text = "Optional Encryption Key";
-            }
-        }
-
-        private void EncryptionKey_GotFocus(object sender, EventArgs e)
-        {
-            if (encryptionKey.Text == "Optional Encryption Key")
-            {
-                encryptionKey.Text = "";
-            }
         }
     }
 }

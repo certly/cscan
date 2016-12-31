@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Scan = new System.Windows.Forms.Button();
             this.Fix = new System.Windows.Forms.Button();
-            this.encryptionKey = new System.Windows.Forms.TextBox();
             this.statusText = new System.Windows.Forms.RichTextBox();
             this.enableJson = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -68,16 +67,6 @@
             this.Fix.UseVisualStyleBackColor = true;
             this.Fix.Click += new System.EventHandler(this.Fix_Click);
             // 
-            // encryptionKey
-            // 
-            this.encryptionKey.Location = new System.Drawing.Point(12, 136);
-            this.encryptionKey.Name = "encryptionKey";
-            this.encryptionKey.Size = new System.Drawing.Size(150, 20);
-            this.encryptionKey.TabIndex = 3;
-            this.encryptionKey.Text = "Optional Encryption Key";
-            this.encryptionKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            
-            // 
             // statusText
             // 
             this.statusText.DetectUrls = false;
@@ -92,7 +81,7 @@
             // enableJson
             // 
             this.enableJson.AutoSize = true;
-            this.enableJson.Location = new System.Drawing.Point(12, 157);
+            this.enableJson.Location = new System.Drawing.Point(12, 135);
             this.enableJson.Margin = new System.Windows.Forms.Padding(2);
             this.enableJson.Name = "enableJson";
             this.enableJson.Size = new System.Drawing.Size(125, 17);
@@ -171,7 +160,6 @@
             this.ClientSize = new System.Drawing.Size(584, 261);
             this.Controls.Add(this.enableJson);
             this.Controls.Add(this.statusText);
-            this.Controls.Add(this.encryptionKey);
             this.Controls.Add(this.Fix);
             this.Controls.Add(this.Scan);
             this.Controls.Add(this.menuStrip1);
@@ -194,7 +182,6 @@
 
         private System.Windows.Forms.Button Scan;
         private System.Windows.Forms.Button Fix;
-        private System.Windows.Forms.TextBox encryptionKey;
         private System.Windows.Forms.RichTextBox statusText;
         private System.Windows.Forms.CheckBox enableJson;
         private System.Windows.Forms.MenuStrip menuStrip1;

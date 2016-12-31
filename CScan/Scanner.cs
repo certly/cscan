@@ -62,7 +62,7 @@ namespace CScan
                 watch.Stop();
             }
 
-            var path = report.WriteToFile(config.EncryptionKey, config.EnableJson);
+            var path = report.WriteToFile(config.EnableJson);
 
             if (!config.EnableJson)
                 Process.Start("notepad.exe", path);
