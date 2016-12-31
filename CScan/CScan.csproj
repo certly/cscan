@@ -127,6 +127,7 @@
     <Compile Include="Commands\Files.cs" />
     <Compile Include="Commands\Collect.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Signature.cs" />
     <Compile Include="Commands\Registry.cs" />
     <Compile Include="Commands\ResetLSP.cs" />
     <Compile Include="Commands\RunCommand.cs" />
