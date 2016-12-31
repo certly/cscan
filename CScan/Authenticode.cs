@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -10,27 +11,10 @@ namespace CScan
 
         public static bool IsSigned(string fileName, bool strict = false)
         {
-            if (!File.Exists(tempPath))
-            {
-                File.WriteAllBytes(tempPath, Resources.signtool);
-            }
+            List<Signer> signers = new List<Signer>();
+            WinTrustVerify.WinTrust.Verify(fileName, out signers);
 
-            fileName = "\"" + Regex.Replace(fileName, @"(\\+)$", @"$1$1") + "\"";
-
-            var psi = new ProcessStartInfo(tempPath, "verify /pa /a " + fileName)
-            {
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden,
-                UseShellExecute = false,
-                RedirectStandardOutput = true
-            };
-
-            using (var process = Process.Start(psi))
-            {
-                process.WaitForExit();
-
-                return process.ExitCode == 0;
-            }
+            return signers.Count > 0; // Might need to do more verification here.
         }
     }
 }

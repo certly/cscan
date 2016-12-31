@@ -181,6 +181,7 @@
     <Compile Include="Scanner.cs" />
     <Compile Include="Whitelist\ServiceWhitelist.cs" />
     <Compile Include="Whitelist\DriverWhitelist.cs" />
+    <Compile Include="WinTrustVerify.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
