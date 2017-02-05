@@ -36,9 +36,29 @@ namespace CScan
             config.EnableJson = enableJson.Checked;
 
             var scanner = new Scanner();
-            scanner.Scan(ref statusText, config);
+            scanner.StatusChanged += Scanner_StatusChanged; // Subscribe the Scanner StatusChanged event so we are notified
 
-            EnableButtons();
+            // We have two options. Create a thread, or use the new(ish) Action and delegates.
+            // This bascially spawns a thread, which frees up the UI thread.
+            // Locking the UI causes the freezing (not responding).
+
+            Action scanAction = new Action(() => { scanner.Scan(config); });
+            scanAction.BeginInvoke(new AsyncCallback(result5 =>
+            { (result5.AsyncState as Action).EndInvoke(result5); }), scanAction);
+        }
+
+        private void Scanner_StatusChanged(object sender, EventArgs e)
+        {
+            // Tell the UI thread to update the textbox
+            this.Invoke(new MethodInvoker(delegate
+            { this.statusText.Text += sender.ToString(); }));
+
+            // Hand controls back to user when we're finished
+            if (sender.ToString().ToLower().Contains("success"))
+            {
+                this.Invoke(new MethodInvoker(delegate
+                { EnableButtons(); }));
+            }
         }
 
         private void Fix_Click(object sender, EventArgs e)
