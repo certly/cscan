@@ -14,7 +14,7 @@ namespace CScan
             List<Signer> signers = new List<Signer>();
             //WinTrustVerify.WinTrust.Verify(fileName, out signers);
 
-            return true;
+            return false;
             // Crashes in an odd spot. For now, we'll always return true. Just so project builds.
             // NOTE: WILL NEED TO BE DEBUGGED AND FIXED.
             //return signers.Count > 0; // Might need to do more verification here.
