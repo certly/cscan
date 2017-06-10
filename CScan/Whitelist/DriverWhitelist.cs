@@ -23,7 +23,7 @@ namespace CScan.Whitelist
             {@"C:\WINDOWS\system32\drivers\disk.sys", "Disk Driver"},
             {@"C:\WINDOWS\system32\DRIVERS\drmkaud.sys", "Microsoft Trusted Audio Drivers"},
             {@"C:\WINDOWS\system32\DRIVERS\fvevol.sys", "BitLocker Drive Encryption Filter Driver"},
-            {@"C:\WINDOWS\system32\drivers\xboxgip.sys", "Xbox Game Input Protocol Driver"}
+            {@"C:\WINDOWS\system32\drivers\xboxgip.sys", "Xbox Game Input Protocol Driver"},
         };
 
         public static bool IsWhitelisted(string key, string value, bool keyIsSignedFile = false)

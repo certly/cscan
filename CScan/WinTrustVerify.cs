@@ -578,8 +578,9 @@ namespace CScan
                 int serialNumberLen = certInfo.SerialNumber.cbData;
                 if (serialNumberLen < 0 || serialNumberLen > 256)
                 {
-                    // TODO Should throw an error
+                    throw new Exception("Serial number was too long.");
                 }
+          
                 var serialNumber = new byte[serialNumberLen];
                 Marshal.Copy(certInfo.SerialNumber.pbData, serialNumber, 0, serialNumberLen);
                 // Byte order seems to be reversed, so I'm flipping it here
@@ -595,14 +596,10 @@ namespace CScan
                     DigestEncryptionAlgorithm = certInfo.SubjectPublicKeyInfoAlgo.Algorithm.pszObjId
                 };
 
-                var signer = new Signer
+                return new Signer
                 {
                     Name = signerName,
-                    Timestamp = DateTime.FromFileTime((long)sgnr.sftVerifyAsOf),
-                    SigningCert = certEntity
                 };
-
-                return signer;
             }
 
             public static string getBestName(X500DistinguishedName x500DN)
@@ -708,9 +705,8 @@ namespace CScan
             /// <param name="FileName"></param>
             /// <param name="SignerName"></param>
             /// <returns></returns>
-            public static WinVerifyTrustResult VerifyEmbeddedSignature(string FileName, out List<Signer> Signers)
+            public static WinVerifyTrustResult VerifyEmbeddedSignature(string FileName)
             {
-                Signers = null;
                 WinVerifyTrustResult result = WinVerifyTrustResult.FileNotSigned;
                 WinTrustData wtd = new WinTrustData(FileName, false, null, null, IntPtr.Zero);
                 wtd.dwStateAction = WinTrustDataStateAction.Verify;
@@ -725,10 +721,6 @@ namespace CScan
                         {
                             return result;
                         }
-
-                        var signer = GetSignerFromStateData(wtd.hWVTStateData);
-                        Signers = new List<Signer>();
-                        Signers.Add(signer);
                     }
                     catch (Exception)
                     {
@@ -750,7 +742,7 @@ namespace CScan
             /// <param name="FileName"></param>
             /// <param name="SignerName"></param>
             /// <returns></returns>
-            public static WinVerifyTrustResult VerifyCatalogFile(string FileName, string CatalogName, string Hash, out List<Signer> Signers, IntPtr hCatAdmin)
+            public static WinVerifyTrustResult VerifyCatalogFile(string FileName, string CatalogName, string Hash, IntPtr hCatAdmin)
             {
                 // Much of this comes from: http://forum.sysinternals.com/howto-verify-the-digital-signature-of-a-file_topic19247.html
 
@@ -758,7 +750,6 @@ namespace CScan
                 WinTrustData wtd = new WinTrustData(FileName, true, Hash, CatalogName, hCatAdmin);
                 wtd.dwStateAction = WinTrustDataStateAction.Verify;
                 Guid guidAction = new Guid(WINTRUST_ACTION_GENERIC_VERIFY_V2);
-                Signers = null;
 
                 try
                 {
@@ -767,10 +758,6 @@ namespace CScan
                     {
                         return result;
                     }
-
-                    var signer = GetSignerFromStateData(wtd.hWVTStateData);
-                    Signers = new List<Signer>();
-                    Signers.Add(signer);
                 }
                 finally
                 {
@@ -789,10 +776,9 @@ namespace CScan
             /// <param name="HashAlgorithm"></param>
             /// <param name="SignerName"></param>
             /// <returns></returns>
-            public static WinVerifyTrustResult VerifyFileFromCatalog(string FileName, string HashAlgorithm, out List<Signer> Signers)
+            public static WinVerifyTrustResult VerifyFileFromCatalog(string FileName, string HashAlgorithm)
             {
                 WinVerifyTrustResult result = WinVerifyTrustResult.FileNotSigned;
-                Signers = null; // TODO MUST set this
 
                 //
                 // Check file is not too large
@@ -904,7 +890,7 @@ namespace CScan
                         //
                         // Use WinVerifyTrust to get the rest of the info
                         //
-                        result = VerifyCatalogFile(FileName, catalogFileName, fileHashTag, out Signers, phCatAdmin);
+                        result = VerifyCatalogFile(FileName, catalogFileName, fileHashTag, phCatAdmin);
 
                         found = true;
                         break;
@@ -950,18 +936,18 @@ namespace CScan
             /// <param name="FileName"></param>
             /// <param name="SignerName"></param>
             /// <returns></returns>
-            public static bool Verify(string FileName, out List<Signer> Signers)
+            public static bool Verify(string FileName)
             {
-                WinVerifyTrustResult result = VerifyEmbeddedSignature(FileName, out Signers);
+                WinVerifyTrustResult result = VerifyEmbeddedSignature(FileName);
                 if (result == WinVerifyTrustResult.FileNotSigned)
                 {
                     // File may have been signed in a catalog, so check those.
                     // First look for a SHA256 signature
-                    result = VerifyFileFromCatalog(FileName, "SHA256", out Signers);
+                    result = VerifyFileFromCatalog(FileName, "SHA256");
                     if (result != WinVerifyTrustResult.Success)
                     {
                         // No SHA256 found, so look for whatever we can
-                        result = VerifyFileFromCatalog(FileName, null, out Signers);
+                        result = VerifyFileFromCatalog(FileName, null);
                     }
                 }
 

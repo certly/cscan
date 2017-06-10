@@ -11,10 +11,7 @@ namespace CScan
 
         public static bool IsSigned(string fileName, bool strict = false)
         {
-            List<Signer> signers = new List<Signer>();
-            WinTrustVerify.WinTrust.Verify(fileName, out signers);
-
-            return signers.Count > 0; // Might need to do more verification here.
+            return WinTrustVerify.WinTrust.Verify(fileName); ; // Might need to do more verification here.
         }
     }
 }

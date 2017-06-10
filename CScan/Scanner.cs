@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using CScan.Components;
 using Environment = System.Environment;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace CScan
 {
@@ -55,11 +57,7 @@ namespace CScan
 
                 status.Text = status.Text + "Running " + componentName + "..." + Environment.NewLine;
 
-                var watch = Stopwatch.StartNew();
-
                 component.Run(ref report, new List<Dictionary<string, string>>());
-
-                watch.Stop();
             }
 
             var path = report.WriteToFile(config.EnableJson);
