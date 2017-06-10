@@ -32,7 +32,7 @@ namespace CScan
             "Services",
             "Drivers",
             "Disks",
-            //"Signatures",
+            "Signatures",
             "Programs",
             "Files"
         };
