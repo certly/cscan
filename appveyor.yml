@@ -29,3 +29,4 @@ deploy:
     folder: bin
     artifact: x86,x64
     set_public: true
+    region: us-west-2
