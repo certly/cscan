@@ -42,7 +42,9 @@
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allowUnsafeOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Scan
@@ -69,12 +71,15 @@
             // 
             // statusText
             // 
+            this.statusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statusText.DetectUrls = false;
+            this.statusText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusText.HideSelection = false;
-            this.statusText.Location = new System.Drawing.Point(168, 24);
+            this.statusText.Location = new System.Drawing.Point(1, 1);
             this.statusText.Name = "statusText";
             this.statusText.ReadOnly = true;
-            this.statusText.Size = new System.Drawing.Size(404, 237);
+            this.statusText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.statusText.Size = new System.Drawing.Size(402, 223);
             this.statusText.TabIndex = 4;
             this.statusText.Text = "";
             // 
@@ -153,13 +158,23 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.statusText);
+            this.panel1.Location = new System.Drawing.Point(168, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(1);
+            this.panel1.Size = new System.Drawing.Size(404, 225);
+            this.panel1.TabIndex = 7;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 261);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.enableJson);
-            this.Controls.Add(this.statusText);
             this.Controls.Add(this.Fix);
             this.Controls.Add(this.Scan);
             this.Controls.Add(this.menuStrip1);
@@ -173,6 +188,7 @@
             this.Text = "CScan";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,6 +208,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableFileEnumerationToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

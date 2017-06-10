@@ -32,7 +32,7 @@ namespace CScan
             "Services",
             "Drivers",
             "Disks",
-            "Signatures",
+            //"Signatures",
             "Programs",
             "Files"
         };
@@ -44,7 +44,7 @@ namespace CScan
             InitializeComponents();
         }
 
-        public void Scan(ref RichTextBox status, Config config)
+        public void Scan(Config config) //(ref RichTextBox status, Config config)
         {
             var report = new Report();
 
@@ -55,7 +55,7 @@ namespace CScan
                 if (componentName == "Files" && !config.EnableFiles)
                     continue;
 
-                status.Text = status.Text + "Running " + componentName + "..." + Environment.NewLine;
+                Status="Running " + componentName + "..." + Environment.NewLine;
 
                 component.Run(ref report, new List<Dictionary<string, string>>());
             }
@@ -65,7 +65,7 @@ namespace CScan
             if (!config.EnableJson)
                 Process.Start("notepad.exe", path);
 
-            status.Text = status.Text + "Success!";
+            Status = "Success!";
         }
 
         protected void InitializeComponents()
@@ -79,5 +79,33 @@ namespace CScan
                 initializedComponents.Add(initializedComponent);
             }
         }
+
+        #region Status Update Subscription
+        // This could be moved into the Main class, or this could be called as "new Scanner()."
+        // Each have their problems. So here we are going to create an event handler and allow Main
+        // to subscribe to that. In which, the statusText will be updated.
+
+        private string _status;
+
+        //Create event handle
+        public event System.EventHandler StatusChanged;
+
+        // Notify subscribers that the status changed
+        protected virtual void OnStatusChanged()
+        { if (StatusChanged != null) StatusChanged((object)Status.ToString(), EventArgs.Empty); }
+
+        public string Status
+        {
+            get
+            { return _status; }
+
+            set
+            {
+                _status = value;
+                OnStatusChanged();
+            }
+        }
+
+        #endregion
     }
 }
