@@ -57,7 +57,13 @@ namespace CScan
 
                 Status="Running " + componentName + "..." + Environment.NewLine;
 
-                component.Run(ref report, new List<Dictionary<string, string>>());
+                try
+                {
+                    component.Run(ref report, new List<Dictionary<string, string>>());
+                } catch
+                {
+                    Status = "Failed to run " + componentName + "..." + Environment.NewLine;
+                }
             }
 
             var path = report.WriteToFile(config.EnableJson);

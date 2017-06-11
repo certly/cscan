@@ -121,6 +121,9 @@
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PsExec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PsExec.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="signtool" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\signtool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

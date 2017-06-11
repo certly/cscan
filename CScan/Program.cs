@@ -26,6 +26,8 @@ namespace CScan
                 Environment.Exit(1);
             }
 
+            Process.EnterDebugMode();
+
             SafeHandle handle = Process.GetCurrentProcess().SafeHandle;
             var manager = new ProcessSecurity(handle);
 
@@ -40,6 +42,9 @@ namespace CScan
                 type);
             manager.AddAccessRule((ProcessAccessRule) rule);
             manager.SaveChanges(handle);
+
+            var elevator = new ElevationHelper();
+            elevator.Elevate();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

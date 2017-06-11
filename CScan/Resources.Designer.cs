@@ -73,6 +73,16 @@ namespace CScan {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] PsExec {
+            get {
+                object obj = ResourceManager.GetObject("PsExec", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] signtool {
             get {
                 object obj = ResourceManager.GetObject("signtool", resourceCulture);

@@ -22,6 +22,7 @@ namespace CScan.Components
                 }
 
                 string path;
+                bool error = false;
 
                 try
                 {
@@ -33,14 +34,15 @@ namespace CScan.Components
                 }
                 catch (InvalidOperationException)
                 {
-                    continue;
+                    path = "";
+                    error = true;
                 }
 
                 list.Add(new Dictionary<string, string>
                 {
                     {"token", "Proc"},
                     {"pid", "(" + process.Id + ")"},
-                    {"path", path}
+                    {"path", !error ? path : "(could not get path)"}
                 });
             }
 

@@ -128,6 +128,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElevationHelper.cs" />
     <Compile Include="Clsid.cs" />
     <Compile Include="Commands\Files.cs" />
     <Compile Include="Commands\Collect.cs" />
@@ -234,6 +235,8 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
     <Content Include="Resources\icon.ico" />
+    <None Include="Resources\PsExec.exe" />
+    <None Include="Resources\psexec.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
