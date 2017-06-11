@@ -41,9 +41,6 @@ namespace CScan
             manager.AddAccessRule((ProcessAccessRule) rule);
             manager.SaveChanges(handle);
 
-            var elevator = new ElevationHelper();
-            elevator.Elevate();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());

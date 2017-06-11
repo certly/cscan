@@ -25,7 +25,7 @@ namespace CScan
 
         public string WriteToFile(bool json = false)
         {
-            var homeDirectory = Environment.GetCommandLineArgs()[1];
+            var homeDirectory = Environment.GetCommandLineArgs().Length > 1 ? Environment.GetCommandLineArgs()[1] : Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
             var path = homeDirectory + "\\Desktop\\" + Main.name + ".txt";
 

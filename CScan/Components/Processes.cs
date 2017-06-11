@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace CScan.Components
 {
     internal class Processes : IComponent
     {
+        const int PROCESS_WM_READ = 0x0010;
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+
         public void Run(ref Report report, List<Dictionary<string, string>> list)
         {
             var processes = Process.GetProcesses();
@@ -30,7 +36,7 @@ namespace CScan.Components
                 }
                 catch (Win32Exception)
                 {
-                    path = process.ProcessName;
+                    continue;
                 }
                 catch (InvalidOperationException)
                 {

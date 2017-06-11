@@ -43,6 +43,7 @@
             this.allowUnsafeOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.elevateToNTAUTHORITYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -140,7 +141,8 @@
             // advancedToolStripMenuItem
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allowUnsafeOperationsToolStripMenuItem});
+            this.allowUnsafeOperationsToolStripMenuItem,
+            this.elevateToNTAUTHORITYToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.advancedToolStripMenuItem.Text = "Advanced";
@@ -148,7 +150,7 @@
             // allowUnsafeOperationsToolStripMenuItem
             // 
             this.allowUnsafeOperationsToolStripMenuItem.Name = "allowUnsafeOperationsToolStripMenuItem";
-            this.allowUnsafeOperationsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.allowUnsafeOperationsToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.allowUnsafeOperationsToolStripMenuItem.Text = "Allow Unsafe Operations";
             this.allowUnsafeOperationsToolStripMenuItem.Click += new System.EventHandler(this.allowUnsafeOperationsToolStripMenuItem_Click);
             // 
@@ -167,6 +169,13 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
             this.panel1.Size = new System.Drawing.Size(404, 225);
             this.panel1.TabIndex = 7;
+            // 
+            // elevateToNTAUTHORITYToolStripMenuItem
+            // 
+            this.elevateToNTAUTHORITYToolStripMenuItem.Name = "elevateToNTAUTHORITYToolStripMenuItem";
+            this.elevateToNTAUTHORITYToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.elevateToNTAUTHORITYToolStripMenuItem.Text = "Elevate to NT AUTHORITY";
+            this.elevateToNTAUTHORITYToolStripMenuItem.Click += new System.EventHandler(this.elevateToNTAUTHORITYToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -209,6 +218,7 @@
         private System.Windows.Forms.ToolStripMenuItem scanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableFileEnumerationToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem elevateToNTAUTHORITYToolStripMenuItem;
     }
 }
 

@@ -12,6 +12,7 @@ namespace CScan
         public const string version = "1.0.0-dev";
 
         private Config config;
+        private ElevationHelper elevator = new ElevationHelper();
 
         public Main()
         {
@@ -26,10 +27,15 @@ namespace CScan
             this.Show();
             this.WindowState = FormWindowState.Normal;
 
-            MessageBox.Show(name + " is distributed by Certly Inc under the Apache 2.0 license (the \"License\")." +
-                            Environment.NewLine + Environment.NewLine +
-                            "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
-                "CScan License");
+            this.elevateToNTAUTHORITYToolStripMenuItem.Enabled = elevator.isMaster || elevator.isDeadlocked;
+
+            if (Environment.GetCommandLineArgs().Length < 2)
+            {
+                MessageBox.Show(name + " is distributed by Certly Inc under the Apache 2.0 license (the \"License\")." +
+                                Environment.NewLine + Environment.NewLine +
+                                "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
+                    "CScan License");
+            }
         }
 
         private void Scan_Click(object sender, EventArgs e)
@@ -126,6 +132,21 @@ namespace CScan
         {
             enableFileEnumerationToolStripMenuItem.Checked = !enableFileEnumerationToolStripMenuItem.Checked;
             config.EnableFiles = enableFileEnumerationToolStripMenuItem.Checked;
+        }
+
+        private void elevateToNTAUTHORITYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (elevator.isDeadlocked)
+            {
+                MessageBox.Show("CScan is unable to elevate itself. This is likely because another instance of CScan is open; please close all CScan instances, including this one, and try again.", "CScan Deadlock Error");
+            }
+
+            if (elevator.isMaster)
+            {
+                this.Hide();
+                this.WindowState = FormWindowState.Minimized;
+                elevator.Elevate();
+            }
         }
     }
 }

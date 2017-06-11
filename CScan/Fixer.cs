@@ -41,7 +41,7 @@ namespace CScan
 
             if (fileName == null)
             {
-                fileName = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Desktop\fix.txt";
+                fileName = (Environment.GetCommandLineArgs().Length > 1 ? Environment.GetCommandLineArgs()[1] : Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)) + @"\Desktop\fix.txt";
             }
 
             if (!File.Exists(fileName))

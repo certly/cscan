@@ -15,14 +15,15 @@ namespace CScan
         Mutex masterMutex;
         Mutex clientMutex;
 
-        bool isMaster;
-        bool isClient;
+        public bool isMaster;
+        public bool isClient;
+        public bool isDeadlocked;
 
         public ElevationHelper()
         {
             if (!AttemptMasterLock() && !AttemptClientLock())
             {
-                throw new System.Exception("Could not lock client or master.");
+                isDeadlocked = true;
             }
         }
 
