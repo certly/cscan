@@ -76,7 +76,7 @@ namespace CScan
             var userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             userPath = "\"" + Regex.Replace(userPath, @"(\\+)$", @"$1$1") + "\"";
 
-            var psi = new ProcessStartInfo(tempPath, "-i -s " + selfPath + " " + userPath)
+            var psi = new ProcessStartInfo(tempPath, "-accepteula -i -s " + selfPath + " " + userPath)
             {
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden,
