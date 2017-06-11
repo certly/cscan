@@ -22,6 +22,10 @@ namespace CScan
             Process.EnterDebugMode();
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.RealTime;
 
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+
             MessageBox.Show(name + " is distributed by Certly Inc under the Apache 2.0 license (the \"License\")." +
                             Environment.NewLine + Environment.NewLine +
                             "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",

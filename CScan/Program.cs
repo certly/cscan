@@ -26,8 +26,6 @@ namespace CScan
                 Environment.Exit(1);
             }
 
-            Process.EnterDebugMode();
-
             SafeHandle handle = Process.GetCurrentProcess().SafeHandle;
             var manager = new ProcessSecurity(handle);
 
