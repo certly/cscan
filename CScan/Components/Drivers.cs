@@ -20,15 +20,18 @@ namespace CScan.Components
 
                     var exists = File.Exists(path);
 
-                    if (DriverWhitelist.IsWhitelisted(path, description, true))
+                    if (DriverWhitelist.IsWhitelisted(path, description))
                         continue;
+
+                    var signed = !exists || Authenticode.IsSigned(path);
 
                     list.Add(new Dictionary<string, string>
                     {
                         {"token", "Drv"},
                         {"path", path},
                         {"description", "(" + entry.GetPropertyValue("Description") + ")"},
-                        {"exists", !exists ? "[b](file not found)[/b]" : null}
+                        {"exists", !exists ? "[b](file not found)[/b]" : null},
+                        {"signed", !signed ? "[b](file not signed)[/b]" : null},
                     });
                 }
             }
