@@ -21,7 +21,9 @@ namespace CScan.Components
                     var exists = File.Exists(path);
 
                     if (DriverWhitelist.IsWhitelisted(path, description))
+                    {
                         continue;
+                    }
 
                     var signed = !exists || Authenticode.IsSigned(path);
 
