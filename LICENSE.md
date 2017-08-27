@@ -1,8 +1,6 @@
-Copyright 2016 Certly, Inc.
+Copyright 2016-2017 Certly, Inc.
 
-This application makes use of strong cryptography and may be subject to U.S. export restrictions. Certly's binary and source distributions of the application have been assigned Encryption Registration Number R111950 by the Bureau of Industry and Security.
-
-External resources such as Microsoft's signtool are the copyright of their respective owners and are not covered under this license.
+**External resources such as Microsoft's PsExec are the copyright of their respective owners and are not covered under this license or copyright notice.**
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use these files except in compliance with the License.
