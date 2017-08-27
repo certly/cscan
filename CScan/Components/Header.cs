@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Management;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 
 namespace CScan.Components
@@ -29,7 +31,7 @@ namespace CScan.Components
 
             list.Add(new Dictionary<string, string>
             {
-                {"raw", "Windows Version " + WmiQuery("Version") + " Language " + ci.EnglishName}
+                {"raw", "Windows Version " + WmiQuery("Version") + MinorRevision() + " Language " + ci.EnglishName}
             });
 
             var totalMemory = (int) Math.Round(double.Parse(WmiQuery("TotalVisibleMemorySize")));
@@ -47,6 +49,18 @@ namespace CScan.Components
             });
 
             report.Add(list);
+        }
+
+        private string MinorRevision()
+        {
+            using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
+            {
+                if (key.GetValue("UBR") == null) {
+                    return "";
+                }
+
+                return "." + key.GetValue("UBR").ToString(); // What the fuck?
+            }
         }
 
         private string WmiQuery(string parameter)
