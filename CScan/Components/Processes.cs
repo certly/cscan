@@ -28,11 +28,13 @@ namespace CScan.Components
                 }
 
                 string path;
+                string publisher = "";
                 bool error = false;
 
                 try
                 {
                     path = process.MainModule.FileName;
+                    publisher = FileInspector.GetPublisher(path);
                 }
                 catch (Win32Exception)
                 {
@@ -47,8 +49,9 @@ namespace CScan.Components
                 list.Add(new Dictionary<string, string>
                 {
                     {"token", "Proc"},
-                    {"pid", "(" + process.Id + ")"},
-                    {"path", !error ? path : "(could not get path)"}
+                    {"publisher", !error ? "(" + publisher + ")" : ""},
+                    {"path", !error ? path : "(could not get path)"},
+                    {"pid", "[" + process.Id + "]"},
                 });
             }
 
