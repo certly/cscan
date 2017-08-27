@@ -128,13 +128,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RegistryExport.cs" />
     <Compile Include="ElevationHelper.cs" />
     <Compile Include="Clsid.cs" />
     <Compile Include="Commands\Files.cs" />
     <Compile Include="Commands\Collect.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Signature.cs" />
-    <Compile Include="Commands\Registry.cs" />
+    <Compile Include="Commands\RegistryImport.cs" />
     <Compile Include="Commands\ResetLSP.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Authenticode.cs" />

@@ -17,7 +17,8 @@ namespace CScan
             // Command => Class
             {"collect", "Collect"},
             {"files", "Files"},
-            {"registry", "Registry"},
+            {"import", "RegistryImport"},
+            {"export", "RegistryExport"},
             {"reset-lsp", "ResetLSP"},
             {"run", "RunCommand"}
         };

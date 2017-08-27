@@ -28,9 +28,7 @@ namespace CScan.Components
                 {
                     {"token", "Sig"},
                     {"file", file},
-                    {
-                        "signed",
-                        exists
+                    {"signed", exists
                             ? !Authenticode.IsSigned(file, true) ? "[b]is not signed[/b]" : "is signed"
                             : "[b]does not exist[/b]"
                     }

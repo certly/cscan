@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace CScan.Commands
 {
-    internal class Registry : ICommand
+    internal class RegistryImport : ICommand
     {
         public List<Dictionary<string, string>> Run(List<string> arguments, List<Dictionary<string, string>> list)
         {
