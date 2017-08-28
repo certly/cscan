@@ -18,6 +18,7 @@ namespace CScan.Commands
                 process.WaitForExit();
 
                 var text = File.ReadAllText(tempFile);
+                File.Delete(tempFile);
 
                 list.Add(new Dictionary<string, string>
                 {
